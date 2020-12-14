@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.constant;
 
 import lombok.Getter;
 
@@ -12,14 +12,14 @@ public enum BrokenType {
 
 
     @Getter
-    private Integer Type;
+    private Integer type;
 
     @Getter
-    private String Msg;
+    private String msg;
 
     BrokenType(Integer Type, String msg)
     {
-        this.Type = Type;
-        this.Msg = msg;
+        this.type = Type;
+        this.msg = msg;
     }
 }

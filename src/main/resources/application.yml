@@ -5,3 +5,7 @@ spring:
     password:10aS!@pl
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

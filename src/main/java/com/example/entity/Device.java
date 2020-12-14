@@ -14,23 +14,52 @@ public class Device {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String DeviceId;
+    @Column
+    private Integer deviceId;
 
-    private String DeviceName;
+    @Column
+    private String deviceName;
 
-    private String DeviceType;
+    @Column
+    private String deviceType;
 
-    private String DevicePara;
+    @Column
+    private String devicePara;
 
-    private Date BuyTime;
+    @Column
+    private Date buyTime;
 
-    private String DevicePrice;
+    @Column
+    private String devicePrice;
 
-    private String DeviceManufacture;
+    @Column
+    private String deviceManufacture;
 
-    private Date Warranty; //保修期
+    @Column
+    private Date warranty; //保修期
 
-    private String UserId;
+    @Column
+    private String userId;
 
-    private String TeacherId;
+    @Column
+    private String teacherId;
+
+    @Column
+    private Integer deviceState;
+
+    public Device() {}
+
+    public Device(Integer deviceId, String deviceName, String deviceType, String devicePara, Date buyTime, String devicePrice, String deviceManufacture, Date warranty, String userId, String teacherId, Integer deviceState) {
+        this.deviceId = deviceId;
+        this.deviceName = deviceName;
+        this.deviceType = deviceType;
+        this.devicePara = devicePara;
+        this.buyTime = buyTime;
+        this.devicePrice = devicePrice;
+        this.deviceManufacture = deviceManufacture;
+        this.warranty = warranty;
+        this.userId = userId;
+        this.teacherId = teacherId;
+        this.deviceState = deviceState;
+    }
 }

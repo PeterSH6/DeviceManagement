@@ -9,18 +9,34 @@ import javax.persistence.*;
 @Table(name = "User")
 public class User {
 
+    @Column
     private String userName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userId;
+    private Integer userId;
 
+    @Column
     private String passWord;
 
-    private String phoneNum;
+    @Column
+    private Boolean accountNonExpired;
 
-    private Boolean
+    @Column
+    private Boolean accountNonLocked;
 
+    @Column
+    private String authorities;
 
+    public User() {
+    }
 
+    public User(String userName, Integer userId, String passWord, Boolean accountNonExpired, Boolean accountNonLocked, String authorities) {
+        this.userName = userName;
+        this.userId = userId;
+        this.passWord = passWord;
+        this.accountNonExpired = accountNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.authorities = authorities;
+    }
 }
