@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url:jdbc:sqlserver://124.70.207.32:1433/jpa
+    username:rdsuser
+    password:10aS!@pl
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
