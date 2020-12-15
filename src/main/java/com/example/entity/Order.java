@@ -22,14 +22,9 @@ public class Order {
     private User user;
 
     //单向1-1
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "deviceId",referencedColumnName = "deviceId")
     private Device device;
-
-    //单向1-1
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacherId",referencedColumnName = "teacherId")
-    private User teacher;
 
     @Column
     private Integer orderState;
@@ -40,11 +35,10 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer orderId, User user, Device device, User teacher, Integer orderState, Date returnTime) {
+    public Order(Integer orderId, User user, Device device, Integer orderState, Date returnTime) {
         this.orderId = orderId;
         this.user = user;
         this.device = device;
-        this.teacher = teacher;
         this.orderState = orderState;
         this.returnTime = returnTime;
     }

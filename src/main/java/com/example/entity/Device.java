@@ -38,18 +38,19 @@ public class Device {
     @Column
     private Date warranty; //保修期
 
-    @Column
-    private String userId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacherId",referencedColumnName = "userId")
+    private User user;
 
-    @Column
-    private String teacherId;
+    @OneToOne(mappedBy = "device")
+    private Broken broken;
 
     @Column
     private Integer deviceState;
 
     public Device() {}
 
-    public Device(Integer deviceId, String deviceName, String deviceType, String devicePara, Date buyTime, String devicePrice, String deviceManufacture, Date warranty, String userId, String teacherId, Integer deviceState) {
+    public Device(Integer deviceId, String deviceName, String deviceType, String devicePara, Date buyTime, String devicePrice, String deviceManufacture, Date warranty, User user, Integer deviceState) {
         this.deviceId = deviceId;
         this.deviceName = deviceName;
         this.deviceType = deviceType;
@@ -58,8 +59,8 @@ public class Device {
         this.devicePrice = devicePrice;
         this.deviceManufacture = deviceManufacture;
         this.warranty = warranty;
-        this.userId = userId;
-        this.teacherId = teacherId;
+        this.user = user;
         this.deviceState = deviceState;
     }
+
 }

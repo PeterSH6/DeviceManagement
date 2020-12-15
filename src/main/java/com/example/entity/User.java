@@ -3,6 +3,7 @@ package com.example.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +18,9 @@ public class User {
     private Integer userId;
 
     @Column
+    private String authorities;
+
+    @Column
     private String passWord;
 
     @Column
@@ -25,18 +29,23 @@ public class User {
     @Column
     private Boolean accountNonLocked;
 
-    @Column
-    private String authorities;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Order> orders;
+
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "user")
+    private Device device;
 
     public User() {
     }
 
-    public User(String userName, Integer userId, String passWord, Boolean accountNonExpired, Boolean accountNonLocked, String authorities) {
+    public User(String userName, Integer userId, String authorities, String passWord, Boolean accountNonExpired, Boolean accountNonLocked, List<Order> orders, Device device) {
         this.userName = userName;
         this.userId = userId;
+        this.authorities = authorities;
         this.passWord = passWord;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
-        this.authorities = authorities;
+        this.orders = orders;
+        this.device = device;
     }
 }
