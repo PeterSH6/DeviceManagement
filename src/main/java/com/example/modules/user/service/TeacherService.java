@@ -1,7 +1,6 @@
 package com.example.modules.user.service;
 
-import com.example.modules.user.vo.DeviceOrderVO;
-import com.example.modules.user.vo.DeviceVO;
+import com.example.modules.device.vo.DeviceVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

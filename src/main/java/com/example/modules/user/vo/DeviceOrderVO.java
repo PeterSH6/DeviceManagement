@@ -1,5 +1,6 @@
 package com.example.modules.user.vo;
 
+import com.example.modules.device.vo.DeviceVO;
 import lombok.Data;
 
 import java.util.Date;
