@@ -27,19 +27,23 @@ public class Order {
     private Device device;
 
     @Column
-    private Integer orderState;
+    private Integer orderStatus;
 
     @Column
-    private Date returnTime;
+    private Date createdTime;
+
+    @Column
+    private Date finishedTime;
 
     public Order() {
     }
 
-    public Order(Integer orderId, User user, Device device, Integer orderState, Date returnTime) {
+    public Order(Integer orderId, User user, Device device, Integer orderStatus, Date createdTime, Date finishedTime) {
         this.orderId = orderId;
         this.user = user;
         this.device = device;
-        this.orderState = orderState;
-        this.returnTime = returnTime;
+        this.orderStatus = orderStatus;
+        this.createdTime = createdTime;
+        this.finishedTime = finishedTime;
     }
 }

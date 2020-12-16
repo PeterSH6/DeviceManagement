@@ -1,7 +1,6 @@
 package com.example.entity;
 
-import com.example.constant.BrokenType;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.example.common.constant.BrokenType;
 import lombok.Data;
 
 import javax.persistence.*;

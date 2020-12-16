@@ -46,7 +46,7 @@ public class Device {
     private Broken broken;
 
     @Column
-    private Integer deviceState;
+    private Integer deviceStatus;
 
     public Device() {}
 
@@ -60,7 +60,7 @@ public class Device {
         this.deviceManufacture = deviceManufacture;
         this.warranty = warranty;
         this.user = user;
-        this.deviceState = deviceState;
+        this.deviceStatus = deviceState;
     }
 
 }

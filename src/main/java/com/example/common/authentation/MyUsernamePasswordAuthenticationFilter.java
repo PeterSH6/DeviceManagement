@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class MyUsernamePasswordAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-    protected MyUsernamePasswordAuthenticationFilter() {
+    public MyUsernamePasswordAuthenticationFilter() {
         super(new AntPathRequestMatcher("/api/login","POST"));
     }
 

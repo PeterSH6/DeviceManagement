@@ -29,6 +29,12 @@ public class User {
     @Column
     private Boolean accountNonLocked;
 
+    @Column
+    private Boolean credentialNonExpired;
+
+    @Column
+    private Boolean enabled;
+
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
     private List<Order> orders;
 
@@ -38,7 +44,7 @@ public class User {
     public User() {
     }
 
-    public User(String userName, Integer userId, String authorities, String passWord, Boolean accountNonExpired, Boolean accountNonLocked, List<Order> orders, Device device) {
+    public User(String userName,Boolean credentialNonExpired, Boolean enabled, Integer userId, String authorities, String passWord, Boolean accountNonExpired, Boolean accountNonLocked, List<Order> orders, Device device) {
         this.userName = userName;
         this.userId = userId;
         this.authorities = authorities;
@@ -47,5 +53,7 @@ public class User {
         this.accountNonLocked = accountNonLocked;
         this.orders = orders;
         this.device = device;
+        this.enabled = enabled;
+        this.credentialNonExpired = credentialNonExpired;
     }
 }

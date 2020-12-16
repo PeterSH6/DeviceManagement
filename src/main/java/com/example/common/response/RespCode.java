@@ -15,6 +15,7 @@ public enum RespCode {
     OK_LOGIN(1000, "login ok"),
     OK_GET_BOOKS(1001, "get device ok"),
     OK_REGISTER(1002, "register ok"),
+    OK_LOGOUT(1003,"logout ok"),
 
     ERR_LOGIN(2000, "login error"),
     ERR_GET_DEVICE(2001, "get device error"),
