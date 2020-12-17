@@ -3,6 +3,7 @@ package com.example.modules.device.controller;
 import com.example.common.response.RespBean;
 import com.example.common.response.RespCode;
 import com.example.entity.Device;
+import com.example.entity.User;
 import com.example.modules.device.service.DeviceManageService;
 import com.example.modules.device.service.DeviceSearchService;
 import com.example.modules.device.vo.DeviceAddVO;
@@ -51,6 +52,7 @@ public class DeviceManageController {
         return RespBean.build(RespCode.AD_GET,deviceSearchService.getAllDevice());
     }
 
+    //多种类型匹配 非String的匹配均为exact()
     @GetMapping("/api/device")
     public RespBean getDeviceByConditions(
             @RequestParam(name = "deviceId",required = false) Integer deviceId,
@@ -116,26 +118,30 @@ public class DeviceManageController {
         }
 
         //TODO: Maybe some problem because used @OneToOne
-//        if(deviceTeacherId != null) {
-//            device.setUser();
-//            matcher = matcher.withMatcher("deviceUser", ExampleMatcher.GenericPropertyMatchers.contains());
-//        } else {
-//            matcher = matcher.withIgnorePaths("deviceTeacherId");
-//        }
+        // user or teacherId
+        if(deviceTeacherId != null) {
+            User user = new User();
+            user.setUserId(deviceTeacherId);
+            device.setUser(user);
+            matcher = matcher.withMatcher("user", ExampleMatcher.GenericPropertyMatchers.contains());
+        } else {
+            matcher = matcher.withIgnorePaths("user");
+        }
 
         if(deviceBuyTime != null) {
             device.setBuyTime(deviceBuyTime);
-            matcher = matcher.withMatcher("buyTime", ExampleMatcher.GenericPropertyMatchers.contains());
+            matcher = matcher.withMatcher("buyTime", ExampleMatcher.GenericPropertyMatchers.exact());
         } else {
             matcher = matcher.withIgnorePaths("buyTime");
         }
 
         if(deviceWarranty != null) {
             device.setWarranty(deviceWarranty);
-            matcher = matcher.withMatcher("warranty", ExampleMatcher.GenericPropertyMatchers.contains());
+            matcher = matcher.withMatcher("warranty", ExampleMatcher.GenericPropertyMatchers.exact());
         } else {
             matcher = matcher.withIgnorePaths("warranty");
         }
+        matcher = matcher.withIgnorePaths("broken");
 
         Example<Device> example = Example.of(device,matcher);
         List<DeviceVO> result = deviceSearchService.getAllDevice(example);

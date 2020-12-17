@@ -35,7 +35,7 @@ public class DeviceManageServiceImpl implements DeviceManageService {
         device.setDeviceStatus(DeviceStatus.FREE.getCode());
         device.setUser(null); //??
         device.setBroken(null);
-        deviceRepository.save(device);
+        deviceCache.postDevice(device);
     }
 
     @Override
@@ -47,7 +47,6 @@ public class DeviceManageServiceImpl implements DeviceManageService {
     public void updateDevice(DeviceUpdateVO deviceUpdateVO) {
         Device device = deviceCache.getDevice(deviceUpdateVO.getDeviceId());
         BeanUtils.copyProperties(deviceUpdateVO,device);
-        //TODO:Cache save or deviceRepo save
-        deviceRepository.save(device);
+        deviceCache.putDevice(device);
     }
 }

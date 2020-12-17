@@ -24,9 +24,17 @@ public class DeviceCache {
         return deviceRepository.findByDeviceId(deviceId);
     }
 
+    //修改
     @CachePut(key = "#device.deviceId")
     public Device putDevice(Device device) {
         log.info("Writing through Device cache with <deviceId>: <" + device.getDeviceId() + ">...");
+        deviceRepository.save(device);
+        return device;
+    }
+
+    @CachePut(key = "#device.deviceId")
+    public Device postDevice(Device device) {
+        log.info("Writing through Device cache...");
         deviceRepository.save(device);
         return device;
     }

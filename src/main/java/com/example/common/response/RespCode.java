@@ -26,7 +26,8 @@ public enum RespCode {
 
     AD_REMOVE_DEVICE(3000, "remove device access denied"),
     AD_UPDATE_DEVICE(3001, "update device access denied"),
-    AD_GET(3002, "get device access denied")  // 同一用户不能在订单结束前重复购买同一设备
+    AD_ADD_DEVICE(3002, "update device access denied"),
+    AD_GET(3003, "get device access denied")  // 同一用户不能在订单结束前重复购买同一设备
     ;
 
     @Getter

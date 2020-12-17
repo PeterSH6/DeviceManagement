@@ -56,4 +56,11 @@ public class User {
         this.enabled = enabled;
         this.credentialNonExpired = credentialNonExpired;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                '}';
+    }
 }
