@@ -3,8 +3,10 @@ package com.example.modules.device.service;
 import com.example.modules.device.vo.DeviceAddVO;
 import com.example.modules.device.vo.DeviceUpdateVO;
 import com.example.modules.device.vo.DeviceVO;
+import org.springframework.stereotype.Service;
 
 //老师采用权限进行如下操作 因此@Sercure("ROLE_ADMIN")
+@Service
 public interface DeviceManageService {
     /**
      * 老师新购买的设备

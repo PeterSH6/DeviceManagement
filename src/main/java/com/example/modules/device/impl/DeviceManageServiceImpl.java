@@ -40,8 +40,7 @@ public class DeviceManageServiceImpl implements DeviceManageService {
 
     @Override
     public void removeDevice(Integer deviceId) {
-
-
+        deviceCache.evictDevice(deviceId);
     }
 
     @Override

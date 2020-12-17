@@ -7,7 +7,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Date;
+import java.util.List;
 
+/**
+ * TODO:Maybe too redundant. Need more abstract
+ */
 @Repository
 @Transactional(readOnly = true)
 public interface DeviceRepository extends JpaRepository<Device,Integer> {
@@ -22,4 +27,19 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
     @Transactional
     @Modifying
     Device save(Device device);
+
+    List<Device> findByDeviceName(String deviceName);
+
+    List<Device> findByDeviceStatus(int deviceStatus);
+
+    List<Device> findByDeviceType(String deviceType);
+
+    List<Device> findByDevicePara(String devicePara);
+
+    //TODO:Maybe can't find
+    List<Device> findByBuyTime(Date buyTime);
+
+    List<Device> findByDevicePrice(String devicePrice);
+
+    List<Device> findByDeviceManufacture(String deviceManufacture);
 }
