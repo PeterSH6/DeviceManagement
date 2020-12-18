@@ -3,6 +3,7 @@ package com.example.entity;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 import org.omg.PortableInterceptor.INACTIVE;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,15 +36,19 @@ public class Order {
     @Column
     private Date finishedTime;
 
+    @Column
+    private Date returnTime;
+
     public Order() {
     }
 
-    public Order(Integer orderId, User user, Device device, Integer orderStatus, Date createdTime, Date finishedTime) {
+    public Order(Integer orderId, User user, Device device, Integer orderStatus, Date createdTime, Date finishedTime, Date returnTime) {
         this.orderId = orderId;
         this.user = user;
         this.device = device;
         this.orderStatus = orderStatus;
         this.createdTime = createdTime;
         this.finishedTime = finishedTime;
+        this.returnTime = returnTime;
     }
 }

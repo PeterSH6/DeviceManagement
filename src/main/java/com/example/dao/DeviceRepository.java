@@ -10,9 +10,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.List;
 
-/**
- * TODO:Maybe too redundant. Need more abstract
- */
 @Repository
 @Transactional(readOnly = true)
 public interface DeviceRepository extends JpaRepository<Device,Integer> {

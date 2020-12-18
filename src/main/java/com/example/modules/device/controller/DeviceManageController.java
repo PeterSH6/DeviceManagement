@@ -122,7 +122,7 @@ public class DeviceManageController {
         if(deviceTeacherId != null) {
             User user = new User();
             user.setUserId(deviceTeacherId);
-            device.setUser(user);
+            device.setUser(user); //TODO:???
             matcher = matcher.withMatcher("user", ExampleMatcher.GenericPropertyMatchers.contains());
         } else {
             matcher = matcher.withIgnorePaths("user");

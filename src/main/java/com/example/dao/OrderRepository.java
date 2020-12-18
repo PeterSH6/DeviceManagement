@@ -25,6 +25,8 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
      */
     List<Order> findByUser(User user);
 
+    List<Order> findByUserAndOrderStatus(User user,Integer orderStatus);
+
     /**
      * find by device
      * @param device the target device
@@ -37,6 +39,9 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
      * @param id the target Order id
      */
     void deleteByOrderId(Integer id);
+
+
+    List<Order> findByOrderStatusAndOrderStatus(Integer orderStatus1,Integer orderStatus2);
 
 
 }

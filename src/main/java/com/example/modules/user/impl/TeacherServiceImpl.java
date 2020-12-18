@@ -19,20 +19,19 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private OrderRepository orderRepository;
 
+    //TODO::
     @Override
     public void confrimOrder(Integer deviceId, Integer userId) {
 
     }
 
+    //TODO::
     @Override
     public void repairDevice(Integer deviceId) {
 
     }
 
-    @Override
-    public List<DeviceOrderVO> getAllEnqueOrder() {
-        return null;
-    }
+    //TODO::
 
     @Override
     public List<DeviceVO> getAllMyDevice() {
