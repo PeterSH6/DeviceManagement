@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "User")
+@Table(name = "tb_user")
 public class User {
 
     @Column

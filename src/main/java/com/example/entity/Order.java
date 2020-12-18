@@ -1,16 +1,13 @@
 package com.example.entity;
 
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
-import org.omg.PortableInterceptor.INACTIVE;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Order")
+@Table(name = "tb_order")
 public class Order {
 
     @Id

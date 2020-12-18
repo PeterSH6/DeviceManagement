@@ -3,10 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:sqlserver://124.70.207.32:1433
-    username: rdsuser
-    password: 10aS!@pl
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:mysql://49.235.232.153:3306/db_device_manage?serverTimezone=Asia/Shanghai
+    username: octopigeon
+    password: 123
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
