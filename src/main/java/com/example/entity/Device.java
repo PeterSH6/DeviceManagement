@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -39,8 +40,12 @@ public class Device {
     private Date warranty; //保修期
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacherId",referencedColumnName = "userId")
+    @JoinColumn(name = "teacher_id",referencedColumnName = "user_id")
     private User user;
+
+    //device是1端
+    @OneToMany(mappedBy = "device",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Order> orders;
 
     @OneToOne(mappedBy = "device")
     private Broken broken;

@@ -19,12 +19,11 @@ public class Order {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId",referencedColumnName = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    //单向1-1
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "deviceId",referencedColumnName = "deviceId")
+    @JoinColumn(name = "device_id")
     private Device device;
 
     @Column
@@ -42,10 +41,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer orderId, User user, Device device, Integer orderStatus, Date createdTime, Date finishedTime, Date returnTime) {
+    public Order(Integer orderId, Integer orderStatus, Date createdTime, Date finishedTime, Date returnTime) {
         this.orderId = orderId;
-        this.user = user;
-        this.device = device;
         this.orderStatus = orderStatus;
         this.createdTime = createdTime;
         this.finishedTime = finishedTime;
