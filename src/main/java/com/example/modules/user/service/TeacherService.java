@@ -5,14 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface TeacherService {
 
-    void confrimOrder(Integer deviceId, Integer userId);
+    void confirmOrder(Integer deviceId, Integer userId);
 
     void repairDevice(Integer deviceId);
-
-    List<DeviceVO> getAllMyDevice();
-
 
 }

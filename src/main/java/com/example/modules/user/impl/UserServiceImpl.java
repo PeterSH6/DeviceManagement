@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void applyOneDevice(Integer deviceId) {
         Device device = deviceCache.getDevice(deviceId);
+        //TODO:如果此处进行了设置，那么只允许有一个人申请
+        device.setDeviceStatus(DeviceStatus.RESERVED.getCode());
+        deviceCache.putDevice(device);
         Order order = new Order();
         order.setCreatedTime(new Date());
         order.setDevice(device);

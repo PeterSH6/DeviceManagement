@@ -57,7 +57,7 @@ public class UserOrderController {
     //TeacherAPI
     @PutMapping("/api/me/device/{deviceId}/order/confirm/{userId}")
     public RespBean confirmOrder(@PathVariable Integer deviceId, @PathVariable Integer userId) {
-        teacherService.confrimOrder(deviceId,userId);
+        teacherService.confirmOrder(deviceId,userId);
         return RespBean.ok();
     }
 

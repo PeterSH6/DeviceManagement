@@ -1,6 +1,8 @@
 package com.example.modules.user.aspect;
 
+import com.example.cache.DeviceCache;
 import com.example.cache.UserCache;
+import com.example.common.constant.DeviceStatus;
 import com.example.common.exception.BusinessException;
 import com.example.common.response.RespCode;
 import com.example.dao.OrderRepository;
@@ -21,6 +23,9 @@ import java.util.List;
 public class TeacherConfirmOrderValidation {
 
     @Autowired
+    private DeviceCache deviceCache;
+
+    @Autowired
     private OrderRepository orderRepository;
 
     @Autowired
@@ -33,6 +38,12 @@ public class TeacherConfirmOrderValidation {
         if(orders.size() == 0) {
             throw new BusinessException(RespCode.ERR_CONFIRM_ORDER);
         }
+
+        //if not free
+        if (!deviceCache.getDevice(deviceId).getDeviceStatus().equals(DeviceStatus.FREE)) {
+            throw new BusinessException(RespCode.ERR_DEVICE_STATUS);
+        }
+
 
     }
 }

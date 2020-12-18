@@ -24,7 +24,7 @@ public class DeviceManageController {
     @Resource(name = "deviceSearchServiceImpl")
     private DeviceSearchService deviceSearchService;
 
-    @Resource(name = "deviceManageService")
+    @Resource(name = "deviceManageServiceImpl")
     private DeviceManageService deviceManageService;
 
     //Device add remove update

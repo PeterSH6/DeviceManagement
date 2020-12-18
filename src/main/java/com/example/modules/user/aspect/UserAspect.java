@@ -16,7 +16,7 @@ public class UserAspect {
     public void teacherServiceAuthenticationPC() {}
 
     //ConfirmOrderValidation
-    @Pointcut("execution(void com.example.modules.user.service.TeacherService.confrimOrder(Integer,Integer)) && args(deviceId,userId)")
+    @Pointcut("execution(void com.example.modules.user.service.TeacherService.confirmOrder(Integer,Integer)) && args(deviceId,userId)")
     public void teacherServiceConfirmOrderPC(Integer deviceId, Integer userId) {}
 
 
