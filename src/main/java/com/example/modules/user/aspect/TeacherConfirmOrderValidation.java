@@ -39,9 +39,13 @@ public class TeacherConfirmOrderValidation {
             throw new BusinessException(RespCode.ERR_CONFIRM_ORDER);
         }
 
-        //if not free
-        //TODO:
-        if (!deviceCache.getDevice(deviceId).getDeviceStatus().equals(DeviceStatus.FREE)) {
+        //if device is not free
+        if (!(
+                deviceCache.getDevice(deviceId).getDeviceStatus().equals(DeviceStatus.FREE.getCode())
+            ||
+                deviceCache.getDevice(deviceId).getDeviceStatus().equals(DeviceStatus.RESERVED.getCode()))
+            )
+        {
             throw new BusinessException(RespCode.ERR_DEVICE_STATUS);
         }
 

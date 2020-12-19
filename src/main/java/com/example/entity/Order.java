@@ -41,8 +41,6 @@ public class Order {
     @Column
     private Boolean isBroken;
 
-    //TODO : 查询order写个aop检查doing并修改状态(ischaoshi,isbroken,orderstatus)
-
     public Order() {
     }
 

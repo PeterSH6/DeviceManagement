@@ -19,8 +19,8 @@ public class UserAspect {
     @Pointcut("execution(void com.example.modules.user.service.TeacherService.confirmOrder(Integer,Integer)) && args(deviceId,userId)")
     public void teacherServiceConfirmOrderPC(Integer deviceId, Integer userId) {}
 
-
-
-    //TODO:对于超时归还的违约情况记录 @After afterReturnDevice
+    //SearchService
+    @Pointcut("execution(void com.example.modules.user.service.SearchOrderService.*(..))")
+    public void searchOrderServicePC() {}
 
 }

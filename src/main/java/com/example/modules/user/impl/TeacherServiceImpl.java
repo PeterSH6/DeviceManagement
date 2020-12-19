@@ -32,17 +32,21 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private OrderRepository orderRepository;
 
-    //TODO::
     @Override
     public void confirmOrder(Integer deviceId, Integer userId) {
         Device device = deviceCache.getDevice(deviceId);
         User user = userCache.getUser(userId);
         device.setDeviceStatus(DeviceStatus.OCCUPIED.getCode());
-        device.setUser(user);
         deviceCache.putDevice(device);
         Order order = orderRepository.findByUserAndDeviceAndOrderStatus(user,device,OrderStatus.ENQUEUE.getCode());
-        order.setOrderStatus(OrderStatus.FINISH_SUCCESS.getCode());
-        order.setFinishedTime(new Date());
+        order.setOrderStatus(OrderStatus.DOING.getCode());
+        //make and set return time
+        Date current = new Date();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(current);
+        calendar.add(Calendar.DATE,7); //7天之内归还
+        current = calendar.getTime();
+        order.setReturnTime(current);
         orderRepository.save(order);
     }
 
