@@ -28,7 +28,7 @@ public class Broken {
     private BrokenType brokenType;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "deviceId",referencedColumnName = "deviceId")
+    @JoinColumn(name = "deviceId",referencedColumnName = "deviceId", unique = true)
     private Device device;
 
     public Broken() {

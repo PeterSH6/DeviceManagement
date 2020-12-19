@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BrokenRepository extends JpaRepository<Broken,Integer> {
+
+    Broken findByDevice_DeviceId(Integer deviceId);
+
+    void deleteByDevice_DeviceId(Integer deviceId);
+
 }
