@@ -35,7 +35,8 @@ public class User {
     @Column
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    //user为1端
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Order> orders;
 
     @OneToOne(fetch = FetchType.LAZY,mappedBy = "user")
