@@ -13,7 +13,7 @@ public enum RespCode {
     AD(403, "access denied"),
 
     OK_LOGIN(1000, "login ok"),
-    OK_GET_BOOKS(1001, "get device ok"),
+    OK_GET_DEVICES(1001, "get device ok"),
     OK_REGISTER(1002, "register ok"),
     OK_LOGOUT(1003,"logout ok"),
     OK_REPAIR(1500, "repair ok"),

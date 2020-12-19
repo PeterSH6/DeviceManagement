@@ -39,23 +39,23 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Order> orders;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "user")
-    private Device device;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Device> device;
 
     public User() {
     }
 
-    public User(String userName,Boolean credentialNonExpired, Boolean enabled, Integer userId, String authorities, String passWord, Boolean accountNonExpired, Boolean accountNonLocked, List<Order> orders, Device device) {
+    public User(String userName, Integer userId, String authorities, String passWord, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialNonExpired, Boolean enabled, List<Order> orders, List<Device> device) {
         this.userName = userName;
         this.userId = userId;
         this.authorities = authorities;
         this.passWord = passWord;
         this.accountNonExpired = accountNonExpired;
         this.accountNonLocked = accountNonLocked;
+        this.credentialNonExpired = credentialNonExpired;
+        this.enabled = enabled;
         this.orders = orders;
         this.device = device;
-        this.enabled = enabled;
-        this.credentialNonExpired = credentialNonExpired;
     }
 
     @Override

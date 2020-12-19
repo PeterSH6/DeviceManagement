@@ -3,6 +3,7 @@ package com.example.common.authentation;
 import com.example.cache.UserCache;
 import com.example.common.response.RespBean;
 import com.example.common.response.RespCode;
+import com.example.dao.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -49,7 +49,7 @@ public class DeviceManageController {
     //Device Search 使用装饰者模式
     @GetMapping("/api/device/all")
     public RespBean getAllDevices() {
-        return RespBean.build(RespCode.AD_GET,deviceSearchService.getAllDevice());
+        return RespBean.build(RespCode.OK_GET_DEVICES,deviceSearchService.getAllDevice());
     }
 
     //多种类型匹配 非String的匹配均为exact()

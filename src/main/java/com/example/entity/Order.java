@@ -16,11 +16,11 @@ public class Order {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "device_id")
+    @JoinColumn(name = "deviceId")
     private Device device;
 
     @Column
