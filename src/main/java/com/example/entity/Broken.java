@@ -17,6 +17,7 @@ public class Broken {
 
 //    @Column
 //    private Integer deviceId;
+    //TODO:
 
     @Column
     private Date brokeTime;

@@ -24,4 +24,6 @@ public class DeviceVO {
     private String deviceManufacture;
 
     private Date warranty; //保修期
+
+    //TODO::add more information
 }
