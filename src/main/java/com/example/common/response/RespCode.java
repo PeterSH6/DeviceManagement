@@ -16,6 +16,8 @@ public enum RespCode {
     OK_GET_BOOKS(1001, "get device ok"),
     OK_REGISTER(1002, "register ok"),
     OK_LOGOUT(1003,"logout ok"),
+    OK_REPAIR(1500, "repair ok"),
+    OK_CANNOT_REPAIR(1501, "cannot repair but ok"),
 
     ERR_LOGIN(2000, "login error"),
     ERR_GET_DEVICE(2001, "get device error"),
@@ -23,6 +25,7 @@ public enum RespCode {
     ERR_UPDATE_DEVICE(2003, "update device error"),
     ERR_DEVICE_STATUS(2004, "device status error"),
     ERR_CONFIRM_ORDER(2005, "confirm order error"),  // 不能确认不存在的订单
+    ERR_REPAIR(2500, "repair error"),  // 不能维修不在损坏列表中的设备
 
     AD_REMOVE_DEVICE(3000, "remove device access denied"),
     AD_UPDATE_DEVICE(3001, "update device access denied"),
