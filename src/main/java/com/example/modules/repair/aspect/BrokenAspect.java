@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class BrokenAspect {
 
-    @Pointcut(value = "execution(void com.example.modules.repair.service.RepairService.repair(Integer)) && args(deviceId)")
+    @Pointcut(value = "execution(Boolean com.example.modules.repair.service.RepairService.repair(Integer)) && args(deviceId)")
     public void repairServiceRepairPC(Integer deviceId) {}
 
 }

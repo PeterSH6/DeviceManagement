@@ -25,9 +25,9 @@ public class Broken {
     private String reason;
 
     @Column
-    private BrokenType brokenType;
+    private Integer brokenType;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "deviceId",referencedColumnName = "deviceId", unique = true)
     private Device device;
 
@@ -38,7 +38,7 @@ public class Broken {
         this.recordId = recordId;
         this.brokeTime = brokeTime;
         this.reason = reason;
-        this.brokenType = brokenType;
+        this.brokenType = brokenType.getType();
         this.device = device;
     }
 }

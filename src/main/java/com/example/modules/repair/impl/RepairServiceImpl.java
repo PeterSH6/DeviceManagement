@@ -9,6 +9,7 @@ import com.example.entity.Device;
 import com.example.modules.repair.service.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author https://github.com/anlowee
@@ -25,7 +26,7 @@ public class RepairServiceImpl implements RepairService {
     @Override
     public Boolean repair(Integer deviceId) {
         Broken broken = brokenCache.get(deviceId);
-        if (broken.getBrokenType().equals(BrokenType.FixAble)) {
+        if (broken.getBrokenType().equals(BrokenType.FixAble.getType())) {
             brokenCache.evict(deviceId);
             Device device = deviceCache.getDevice(deviceId);
             device.setDeviceStatus(DeviceStatus.FREE.getCode());
