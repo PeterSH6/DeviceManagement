@@ -16,11 +16,4 @@ public interface UserService {
 
     void returnOneDevice(Integer deviceId);
 
-    List<DeviceOrderVO> getAllMyDeviceOrders();
-
-    List<DeviceOrderVO> getAllMySuccessDeviceOrders();
-
-    List<DeviceOrderVO> getAllMyFailedDeviceOrders();
-
-    List<DeviceOrderVO> getAllMyEnqueueDeviceOrders();
 }

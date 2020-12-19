@@ -41,14 +41,8 @@ public class TeacherServiceImpl implements TeacherService {
         device.setUser(user);
         deviceCache.putDevice(device);
         Order order = orderRepository.findByUserAndDeviceAndOrderStatus(user,device,OrderStatus.ENQUEUE.getCode());
-        order.setOrderStatus(OrderStatus.SUCCESS.getCode());
+        order.setOrderStatus(OrderStatus.FINISH_SUCCESS.getCode());
         order.setFinishedTime(new Date());
-        //add some time
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(new Date());
-        calendar.add(calendar.DATE,7); //add one week
-        order.setReturnTime(calendar.getTime());
-
         orderRepository.save(order);
     }
 

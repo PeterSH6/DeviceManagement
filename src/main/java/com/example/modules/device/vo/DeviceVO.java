@@ -25,5 +25,7 @@ public class DeviceVO {
 
     private Date warranty; //保修期
 
-    //TODO::add more information
+    private Integer deviceStatus;
+
+
 }

@@ -7,6 +7,7 @@ import com.example.common.constant.OrderStatus;
 import com.example.common.exception.BusinessException;
 import com.example.common.response.RespCode;
 import com.example.dao.OrderRepository;
+import com.example.entity.Device;
 import com.example.entity.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
@@ -35,17 +36,26 @@ public class UserServiceValidation {
         log.info("Validate is apply operation illegal before UserService.applyOneDevice()...");
         Integer userId = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId();
         //cannot redundantly apply one device
-        List<Order> orders = orderRepository.findByOrderStatusAndOrderStatus(OrderStatus.ENQUEUE.getCode(), OrderStatus.SUCCESS.getCode());
+        List<Order> orders = orderRepository.findByOrderStatusAndOrderStatus(OrderStatus.ENQUEUE.getCode(), OrderStatus.FINISH_SUCCESS.getCode());
         for(Order order : orders) {
             if(order.getDevice().getDeviceId().equals(deviceId)) {
                 throw new BusinessException(RespCode.ERR_GET_DEVICE);
             }
         }
-        //can only apply a device which status is FREE
-        //TODO::
-        if(!deviceCache.getDevice(deviceId).getDeviceStatus().equals(DeviceStatus.FREE)) {
+
+        Device device = deviceCache.getDevice(deviceId);
+
+        //该设备第一次被申请，需要转换为Reserved状态。该状态下设备仍可被申请
+        if(device.getDeviceStatus().equals(DeviceStatus.FREE.getCode())) {
+            device.setDeviceStatus(DeviceStatus.RESERVED.getCode());
+            deviceCache.putDevice(device);
+        }
+        //can not apply broken device
+        //当设备状态为occupied的时候，用户可以创建订单，但是teacher处无法处理，因为没有设备
+        if(deviceCache.getDevice(deviceId).getDeviceStatus().equals(DeviceStatus.BROKEN.getCode())) {
             throw new BusinessException(RespCode.ERR_DEVICE_STATUS);
         }
+
     }
 
 

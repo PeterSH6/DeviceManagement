@@ -35,17 +35,26 @@ public class Order {
     @Column
     private Date returnTime;
 
-    //TODO : ischaoshi, isbroken
+    @Column
+    private Boolean isLate;
+
+    @Column
+    private Boolean isBroken;
+
     //TODO : 查询order写个aop检查doing并修改状态(ischaoshi,isbroken,orderstatus)
 
     public Order() {
     }
 
-    public Order(Integer orderId, Integer orderStatus, Date createdTime, Date finishedTime, Date returnTime) {
+    public Order(Integer orderId, User user, Device device, Integer orderStatus, Date createdTime, Date finishedTime, Date returnTime, Boolean isLate, Boolean isBroken) {
         this.orderId = orderId;
+        this.user = user;
+        this.device = device;
         this.orderStatus = orderStatus;
         this.createdTime = createdTime;
         this.finishedTime = finishedTime;
         this.returnTime = returnTime;
+        this.isLate = isLate;
+        this.isBroken = isBroken;
     }
 }
