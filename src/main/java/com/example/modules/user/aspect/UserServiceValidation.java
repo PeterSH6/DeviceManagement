@@ -42,6 +42,7 @@ public class UserServiceValidation {
             }
         }
         //can only apply a device which status is FREE
+        //TODO::
         if(!deviceCache.getDevice(deviceId).getDeviceStatus().equals(DeviceStatus.FREE)) {
             throw new BusinessException(RespCode.ERR_DEVICE_STATUS);
         }

@@ -54,6 +54,10 @@ public class UserOrderController {
         return RespBean.ok(userService.getAllMyEnqueueDeviceOrders());
     }
 
+
+    //TODO::Enqueue + not occupied
+
+
     //TeacherAPI
     @PutMapping("/api/me/device/{deviceId}/order/confirm/{userId}")
     public RespBean confirmOrder(@PathVariable Integer deviceId, @PathVariable Integer userId) {

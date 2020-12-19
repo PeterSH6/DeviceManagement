@@ -5,7 +5,7 @@ import lombok.Getter;
 public enum OrderStatus {
 
     ENQUEUE(0),
-    SUCCESS(1),
+    SUCCESS(1), //TODO: doing + finish
     FAILED(2);
 
     @Getter
