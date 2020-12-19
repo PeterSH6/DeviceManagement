@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://49.235.232.153:3306/db_device_manage?serverTimezone=Asia/Shanghai
-    username: octopigeon
-    password: 123
+    url: jdbc:mysql://122.9.45.33:3306
+    username: root
+    password: 10aS!@pl
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
