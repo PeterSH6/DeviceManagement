@@ -16,6 +16,6 @@ public class UserInfoVO {
 
     private Integer totalDeviceNum;
 
-    private Boolean isAdmin;
+    private String authorities;
 
 }

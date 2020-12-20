@@ -5,6 +5,7 @@ import com.example.common.response.RespCode;
 import com.example.modules.repair.service.RepairService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,12 @@ public class RepairController {
 
     @Resource(name = "repairServiceImpl")
     private RepairService repairService;
+
+    @Secured(value = {"ROLE_TEACHER", "ROLE_REPAIRER"})
+    @GetMapping("/api/device/broken/all")
+    public RespBean getAllBroken() {
+        return RespBean.ok(repairService.getAllBroken());
+    }
 
     @Secured(value = {"ROLE_REPAIRER"})
     @DeleteMapping("/api/device/broken")

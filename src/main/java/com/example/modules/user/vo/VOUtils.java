@@ -3,10 +3,12 @@ package com.example.modules.user.vo;
 import com.example.cache.UserCache;
 import com.example.dao.OrderRepository;
 import com.example.dao.UserRepository;
+import com.example.entity.Broken;
 import com.example.entity.Device;
 import com.example.entity.Order;
 import com.example.entity.User;
 import com.example.modules.device.vo.DeviceVO;
+import com.example.modules.repair.vo.BrokenVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,13 +28,24 @@ public class VOUtils {
     @Autowired
     private OrderRepository orderRepository;
 
+    public List<BrokenVO> brokenToBrokenVO(List<Broken> brokens) {
+        List<BrokenVO> result = new ArrayList<>();
+        for (Broken broken : brokens) {
+            BrokenVO brokenVO = new BrokenVO();
+            BeanUtils.copyProperties(broken, brokenVO);
+            brokenVO.setDeviceId(broken.getDevice().getDeviceId());
+            result.add(brokenVO);
+        }
+        return result;
+    }
+
     public UserInfoVO userToUserInfoVO(User user) {
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(user,userInfoVO);
         //set totalOrderNum
         userInfoVO.setTotalDeviceNum(orderRepository.findByUser(user).size());
         //set isAdmin
-        userInfoVO.setIsAdmin(user.getAuthorities().contains("ROLE_ADMIN"));
+        userInfoVO.setAuthorities(user.getAuthorities());
         return userInfoVO;
     }
 
@@ -44,7 +57,7 @@ public class VOUtils {
             //set totalOrderNum
             userInfoVO.setTotalDeviceNum(orderRepository.findByUser(user).size());
             //set isAdmin
-            userInfoVO.setIsAdmin(user.getAuthorities().contains("ROLE_ADMIN"));
+            userInfoVO.setAuthorities(user.getAuthorities());
             userInfoVOS.add(userInfoVO);
         }
         return userInfoVOS;
