@@ -47,7 +47,29 @@ public class DeviceManageServiceImpl implements DeviceManageService {
     @Override
     public void updateDevice(DeviceUpdateVO deviceUpdateVO) {
         Device device = deviceCache.getDevice(deviceUpdateVO.getDeviceId());
-        BeanUtils.copyProperties(deviceUpdateVO,device);
+        this.copyProperties(deviceUpdateVO,device);
         deviceCache.putDevice(device);
+    }
+
+    public void copyProperties(DeviceUpdateVO deviceUpdateVO,Device device) {
+        if(deviceUpdateVO.getDeviceManufacture() != null) {
+            device.setDeviceManufacture(deviceUpdateVO.getDeviceManufacture());
+        }
+        if(deviceUpdateVO.getDeviceName() != null) {
+            device.setDeviceName(deviceUpdateVO.getDeviceName());
+        }
+        if(deviceUpdateVO.getDevicePara() != null) {
+            device.setDevicePrice(deviceUpdateVO.getDevicePara());
+        }
+        if(deviceUpdateVO.getDevicePrice() != null) {
+            device.setDevicePrice(deviceUpdateVO.getDevicePrice());
+        }
+        if(deviceUpdateVO.getDeviceType() != null) {
+            device.setDeviceType(deviceUpdateVO.getDeviceType());
+        }
+        if(deviceUpdateVO.getWarranty() != null) {
+            device.setWarranty(deviceUpdateVO.getWarranty());
+        }
+
     }
 }

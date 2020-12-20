@@ -64,6 +64,7 @@ public class VOUtils {
             deviceOrderVO.setUser(this.userToUserInfoVO(order.getUser()));
             deviceOrderVO.setTeacher(this.userToUserInfoVO(order.getDevice().getUser()));
             deviceOrderVO.setDevice(this.deviceTODeviceVO(order.getDevice()));
+            deviceOrderVOS.add(deviceOrderVO);
         }
         return deviceOrderVOS;
     }

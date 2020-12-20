@@ -16,22 +16,16 @@ public class DeviceUpdateVO {
     @NotBlank
     private Integer deviceId;
 
-    @NotBlank
     private String deviceName;
 
-    @NotBlank
     private String deviceType;
 
-    @NotBlank
     private String devicePara;
 
-    @NotBlank
     private String devicePrice;
 
-    @NotBlank
     private String deviceManufacture;
 
-    @NotBlank
     private Date warranty; //保修期
 
 }

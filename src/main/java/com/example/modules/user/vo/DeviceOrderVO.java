@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class DeviceOrderVO {
 
-    private Date createTime;
+    private Date createdTime;
 
     private Date finishedTime;
 

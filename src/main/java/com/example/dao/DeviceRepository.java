@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import com.example.entity.Device;
+import com.example.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
@@ -26,6 +27,10 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
     Device save(Device device);
 
     List<Device> findByDeviceName(String deviceName);
+
+    List<Device> findByUser(User user);
+
+    List<Device> findByUserAndDeviceStatusLessThanEqual(User user,Integer deviceStatus);
 
     List<Device> findByDeviceStatus(int deviceStatus);
 
