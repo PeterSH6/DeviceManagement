@@ -14,4 +14,6 @@ public interface SearchOrderService {
     List<DeviceOrderVO> getAllMyEnqueueDeviceOrders();
 
     List<DeviceOrderVO> getAllMyEnqueueNotOccupiedDeviceOrders();
+
+    List<DeviceOrderVO> getAllMyDoingDeviceOrders();
 }

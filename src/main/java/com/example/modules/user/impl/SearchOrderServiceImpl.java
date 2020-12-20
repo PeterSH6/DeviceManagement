@@ -124,4 +124,22 @@ public class SearchOrderServiceImpl implements SearchOrderService {
 
         return voUtils.deviceOrderTODeviceOrderVOS(orders);
     }
+
+    @Override
+    public List<DeviceOrderVO> getAllMyDoingDeviceOrders() {
+        User user = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Order> orders = new ArrayList<>();
+        if(user.getAuthorities().equals("ROLE_TEACHER")) {
+            List<Device> devices = deviceRepository.findByUserAndDeviceStatusLessThanEqual(user,DeviceStatus.RESERVED.getCode());
+            for(Device device : devices) {
+                List<Order> orders1 = orderRepository.findByDeviceAndOrderStatus(device,OrderStatus.DOING.getCode());
+                orders.addAll(orders1);
+            }
+        }
+        else if(user.getAuthorities().equals("ROLE_STUDENT")) {
+            orders = orderRepository.findByUserAndOrderStatus(user,OrderStatus.DOING.getCode());
+        }
+
+        return voUtils.deviceOrderTODeviceOrderVOS(orders);
+    }
 }

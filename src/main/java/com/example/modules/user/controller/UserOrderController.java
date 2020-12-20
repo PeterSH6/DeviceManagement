@@ -4,6 +4,7 @@ import com.example.common.response.RespBean;
 import com.example.modules.user.service.SearchOrderService;
 import com.example.modules.user.service.TeacherService;
 import com.example.modules.user.service.UserService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +32,7 @@ public class UserOrderController {
         return RespBean.ok();
     }
 
+    @Secured(value = {"ROLE_TEACHER"})
     @PutMapping("/api/device/{id}/return")
     public RespBean returnOneDevice(@PathVariable Integer id) {
         userService.returnOneDevice(id);
@@ -56,6 +58,11 @@ public class UserOrderController {
     @GetMapping("/api/me/device/order/enqueue")
     public RespBean getAllMyEnqueueDeviceOrders() {
         return RespBean.ok(searchOrderService.getAllMyEnqueueDeviceOrders());
+    }
+
+    @GetMapping("/api/me/device/order/doing")
+    public RespBean getAllMyDoingDeviceOrders() {
+        return RespBean.ok(searchOrderService.getAllMyDoingDeviceOrders());
     }
 
     //Teacher只希望看到未分配的设备的Order，occupied设备的order无需展示给teacher
