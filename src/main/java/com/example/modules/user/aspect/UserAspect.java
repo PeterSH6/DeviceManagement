@@ -1,5 +1,6 @@
 package com.example.modules.user.aspect;
 
+import com.example.modules.user.vo.UserRegisterVO;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
@@ -22,5 +23,9 @@ public class UserAspect {
     //SearchService
     @Pointcut("execution(void com.example.modules.user.service.SearchOrderService.*(..))")
     public void searchOrderServicePC() {}
+
+    //UserRegisterService
+    @Pointcut("execution(void com.example.modules.user.service.UserRegisterService.register(com.example.modules.user.vo.UserRegisterVO)) && args(userRegisterVO)")
+    public void userRegisterPC(UserRegisterVO userRegisterVO) {}
 
 }

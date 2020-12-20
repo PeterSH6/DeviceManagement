@@ -9,6 +9,7 @@ import com.example.common.response.RespCode;
 import com.example.dao.OrderRepository;
 import com.example.entity.Device;
 import com.example.entity.Order;
+import com.example.modules.user.vo.UserRegisterVO;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -62,6 +63,16 @@ public class UserServiceValidation {
             throw new BusinessException(RespCode.ERR_DEVICE_STATUS);
         }
 
+    }
+
+    @Before("com.example.modules.user.aspect.UserAspect.userRegisterPC(com.example.modules.user.vo.UserRegisterVO) && args(userRegisterVO)")
+    public void beforeUserRegisterService(UserRegisterVO userRegisterVO) {
+        if(userCache.getUser(userRegisterVO.getUserName()) != null) {
+            throw new BusinessException(RespCode.ERR_REGISTER);
+        }
+        if(userRegisterVO.getAuthorities() == null || userRegisterVO.getAuthorities() == "") {
+            userRegisterVO.setAuthorities("ROLE_STUDENT");
+        }
     }
 
 

@@ -25,7 +25,7 @@ public class VistorRegisterServiceImpl implements UserRegisterService {
         user.setAccountNonLocked(true);
         user.setCredentialNonExpired(true);
         user.setEnabled(true);
-        user.setAuthorities("ROLE_STUDENT");
+        //user.setAuthorities("ROLE_STUDENT");
         user.setPassWord(passwordEncoder.encode(userRegisterVO.getPassWord()));
         userRepository.save(user);
     }

@@ -34,7 +34,7 @@ public class TeacherConfirmOrderValidation {
     @Before(value = "com.example.modules.user.aspect.UserAspect.teacherServiceConfirmOrderPC(Integer,Integer) && args(deviceId,userId)")
     public void beforeTeacherConfirmOrderPC(Integer deviceId, Integer userId) {
         log.info("Validate is confirm operation illegal before SellerService.confirmOrder()...");
-        List<com.example.entity.Order> orders = orderRepository.findByUser(userCache.getUser(userId));
+        List<com.example.entity.Order> orders = orderRepository.findByUserAndDevice(userCache.getUser(userId),deviceCache.getDevice(deviceId));
         if(orders.size() == 0) {
             throw new BusinessException(RespCode.ERR_CONFIRM_ORDER);
         }

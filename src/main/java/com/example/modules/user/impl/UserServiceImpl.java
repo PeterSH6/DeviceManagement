@@ -50,6 +50,10 @@ public class UserServiceImpl implements UserService {
     public void returnOneDevice(Integer deviceId) {
         Device device = deviceCache.getDevice(deviceId);
         device.setDeviceStatus(DeviceStatus.FREE.getCode());
+        deviceCache.putDevice(device);
+        Order order = orderRepository.findByUserAndDeviceAndOrderStatus(userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName()),device,OrderStatus.DOING.getCode());
+        order.setOrderStatus(OrderStatus.FINISH_SUCCESS.getCode());
+        orderRepository.save(order);
     }
 
 }

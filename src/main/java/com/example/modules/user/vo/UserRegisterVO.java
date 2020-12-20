@@ -16,4 +16,7 @@ public class UserRegisterVO {
     @NotBlank
     private String passWord;
 
+    @NotBlank
+    private String authorities;
+
 }

@@ -25,6 +25,8 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
      */
     List<Order> findByUser(User user);
 
+    List<Order> findByUserAndDevice(User user,Device device);
+
     List<Order> findByUserAndOrderStatus(User user,Integer orderStatus);
 
     List<Order> findByOrderStatus(Integer orderStatus);
