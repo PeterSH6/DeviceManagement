@@ -39,7 +39,7 @@ public class Device {
     @Column
     private Date warranty; //保修期
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "teacher_id",referencedColumnName = "userId")
     private User user;
 

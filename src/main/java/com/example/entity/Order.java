@@ -15,11 +15,11 @@ public class Order {
     private Integer orderId;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "deviceId")
     private Device device;
 
