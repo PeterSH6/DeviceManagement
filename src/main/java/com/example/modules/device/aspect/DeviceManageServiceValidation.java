@@ -31,7 +31,7 @@ public class DeviceManageServiceValidation {
     public void beforeDeviceManageServiceRemoveDevicePC(Integer deviceId) {
         log.info("Validating the authority of removing device...");
         User user = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-        if(user.getAuthorities().contains("ROLE_ADMIN")) { //is teacher
+        if(user.getAuthorities().contains("ROLE_TEACHER")) { //is teacher
             Device device = deviceCache.getDevice(deviceId);
             if(!device.getUser().getUserId().equals(user.getUserId())) {
                 throw new BusinessException(RespCode.AD_REMOVE_DEVICE);
@@ -46,7 +46,7 @@ public class DeviceManageServiceValidation {
     public void beforeDeviceManageServiceAddDevicePC(DeviceAddVO deviceAddVO) {
         log.info("Validating the authority of adding device...");
         User user = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-        if (user.getAuthorities().contains("ROLE_ADMIN")) {
+        if (!user.getAuthorities().contains("ROLE_TEACHER")) {
             //user cannot add device
             throw new BusinessException(RespCode.AD_ADD_DEVICE);
         }
@@ -56,7 +56,7 @@ public class DeviceManageServiceValidation {
     public void beforeDeviceManageServiceUpdateDevicePC(DeviceUpdateVO deviceUpdateVO) {
         log.info("Validating the authority of updating device...");
         User user = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-        if (user.getAuthorities().contains("ROLE_ADMIN")) { //is teacher
+        if (user.getAuthorities().contains("ROLE_TEACHER")) { //is teacher
             if (!deviceCache.getDevice(deviceUpdateVO.getDeviceId()).getUser().getUserId().equals(user.getUserId())) {
                 //the teacher doesn't have this device
                 throw new BusinessException(RespCode.AD_UPDATE_DEVICE);

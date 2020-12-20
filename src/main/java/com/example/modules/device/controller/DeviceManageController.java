@@ -43,7 +43,7 @@ public class DeviceManageController {
     @PutMapping("/api/device")
     public RespBean putDevice(@Validated @RequestBody DeviceUpdateVO deviceUpdateVO) {
         deviceManageService.updateDevice(deviceUpdateVO);
-        return RespBean.ok("remove device ok");
+        return RespBean.ok("update device ok");
     }
 
     //Device Search 使用装饰者模式

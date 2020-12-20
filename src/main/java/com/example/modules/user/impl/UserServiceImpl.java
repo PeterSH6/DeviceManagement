@@ -41,6 +41,8 @@ public class UserServiceImpl implements UserService {
         Order order = new Order();
         order.setCreatedTime(new Date());
         order.setOrderStatus(OrderStatus.ENQUEUE.getCode());
+        order.setDevice(deviceCache.getDevice(deviceId));
+        order.setUser(userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName()));
         orderRepository.save(order);
     }
 

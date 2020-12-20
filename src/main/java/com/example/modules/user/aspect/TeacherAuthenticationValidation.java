@@ -26,7 +26,7 @@ public class TeacherAuthenticationValidation {
     public void beforeTeacherServicePC() {
         log.info("Validating the authority of all doing teacherService");
         User user = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-        if(!user.getAuthorities().contains("ROLE_ADMIN")) {
+        if(!user.getAuthorities().contains("ROLE_TEACHER")) {
             throw new BusinessException(RespCode.AD);
         }
     }

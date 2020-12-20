@@ -35,7 +35,6 @@ public class DeviceManageServiceImpl implements DeviceManageService {
         device.setBuyTime(new Date()); //默认获取当前时间
         device.setUser(userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName()));
         device.setDeviceStatus(DeviceStatus.FREE.getCode());
-        device.setUser(null); //??
         device.setBroken(null);
         deviceCache.postDevice(device);
     }
