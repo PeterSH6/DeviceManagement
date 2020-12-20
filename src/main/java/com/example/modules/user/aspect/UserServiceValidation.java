@@ -34,6 +34,12 @@ public class UserServiceValidation {
     @Before("com.example.modules.user.aspect.UserAspect.userServiceApplyOneDevicePC(Integer) && args(deviceId)")
     public void beforeUserServiceApplyOneDevicePC(Integer deviceId) {
         log.info("Validate is apply operation illegal before UserService.applyOneDevice()...");
+
+        //if don't have this device
+        if(deviceCache.getDevice(deviceId) == null) {
+            throw new BusinessException(RespCode.ERR_GET_DEVICE);
+        }
+
         Integer userId = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId();
         //cannot redundantly apply one device
         List<Order> orders = orderRepository.findByOrderStatus(OrderStatus.ENQUEUE.getCode());

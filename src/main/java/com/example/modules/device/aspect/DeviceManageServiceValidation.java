@@ -30,6 +30,9 @@ public class DeviceManageServiceValidation {
     @Before("com.example.modules.device.aspect.DeviceAspect.deviceManageServiceRemoveDevicePC(Integer) && args(deviceId)")
     public void beforeDeviceManageServiceRemoveDevicePC(Integer deviceId) {
         log.info("Validating the authority of removing device...");
+        if(deviceCache.getDevice(deviceId) == null) {
+            throw new BusinessException(RespCode.ERR_GET_DEVICE);
+        }
         User user = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if(user.getAuthorities().contains("ROLE_TEACHER")) { //is teacher
             Device device = deviceCache.getDevice(deviceId);
@@ -55,6 +58,9 @@ public class DeviceManageServiceValidation {
     @Before("com.example.modules.device.aspect.DeviceAspect.deviceManageServiceUpdateDevicePC(com.example.modules.device.vo.DeviceUpdateVO) && args(deviceUpdateVO)")
     public void beforeDeviceManageServiceUpdateDevicePC(DeviceUpdateVO deviceUpdateVO) {
         log.info("Validating the authority of updating device...");
+        if(deviceCache.getDevice(deviceUpdateVO.getDeviceId()) == null) {
+            throw new BusinessException(RespCode.ERR_GET_DEVICE);
+        }
         User user = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user.getAuthorities().contains("ROLE_TEACHER")) { //is teacher
             if (!deviceCache.getDevice(deviceUpdateVO.getDeviceId()).getUser().getUserId().equals(user.getUserId())) {
