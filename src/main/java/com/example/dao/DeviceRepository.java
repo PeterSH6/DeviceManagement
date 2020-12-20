@@ -34,6 +34,8 @@ public interface DeviceRepository extends JpaRepository<Device,Integer> {
 
     List<Device> findByDeviceStatus(int deviceStatus);
 
+    List<Device> findByUserAndDeviceStatus(User user, Integer deviceStatus);
+
     List<Device> findByDeviceType(String deviceType);
 
     List<Device> findByDevicePara(String devicePara);

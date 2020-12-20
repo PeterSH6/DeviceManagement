@@ -36,6 +36,8 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
     //not used
     Order findByUserAndDeviceAndOrderStatus(User user,Device device,Integer orderStatus);
 
+    Order findByDevice_DeviceIdAndOrderStatus(Integer deviceId, Integer orderStatus);
+
 
     /**
      * find by device
