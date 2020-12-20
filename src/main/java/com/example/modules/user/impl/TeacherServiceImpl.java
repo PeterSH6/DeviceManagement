@@ -1,11 +1,14 @@
 package com.example.modules.user.impl;
 
+import com.example.cache.BrokenCache;
 import com.example.cache.DeviceCache;
 import com.example.cache.UserCache;
+import com.example.common.constant.BrokenType;
 import com.example.common.constant.DeviceStatus;
 import com.example.common.constant.OrderStatus;
 import com.example.dao.OrderRepository;
 import com.example.dao.UserRepository;
+import com.example.entity.Broken;
 import com.example.entity.Device;
 import com.example.entity.Order;
 import com.example.entity.User;
@@ -32,6 +35,9 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private BrokenCache brokenCache;
+
     @Override
     public void confirmOrder(Integer deviceId, Integer userId) {
         Device device = deviceCache.getDevice(deviceId);
@@ -52,7 +58,13 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public void repairDevice(Integer deviceId) {
-
+        Broken broken = new Broken();
+        broken.setReason("设备损坏");
+        broken.setBrokenType(BrokenType.FixAble.getType());
+        broken.setBrokeTime(new Date());
+        broken.setDevice(deviceCache.getDevice(deviceId));
+        brokenCache.put(broken);
+        orderRepository.deleteByDevice_DeviceId(deviceId);
     }
 
 }

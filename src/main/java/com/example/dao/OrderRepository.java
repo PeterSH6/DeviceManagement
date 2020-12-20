@@ -50,6 +50,8 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
      */
     void deleteByOrderId(Integer id);
 
+    void deleteByDevice_DeviceId(Integer deviceId);
+
 
     List<Order> findByOrderStatusAndOrderStatus(Integer orderStatus1,Integer orderStatus2);
 
