@@ -43,7 +43,7 @@ public class UserServiceValidation {
 
         Integer userId = userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName()).getUserId();
         //cannot redundantly apply one device
-        List<Order> orders = orderRepository.findByOrderStatus(OrderStatus.ENQUEUE.getCode());
+        List<Order> orders = orderRepository.findByUserAndOrderStatus(userCache.getUser(SecurityContextHolder.getContext().getAuthentication().getName()),OrderStatus.ENQUEUE.getCode());
         for(Order order : orders) {
             if(order.getDevice().getDeviceId().equals(deviceId)) {
                 throw new BusinessException(RespCode.ERR_GET_DEVICE);
