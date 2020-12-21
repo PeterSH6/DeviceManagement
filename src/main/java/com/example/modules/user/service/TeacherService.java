@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface TeacherService {
 
+    @Transactional
     void confirmOrder(Integer deviceId, Integer userId);
 
     @Transactional

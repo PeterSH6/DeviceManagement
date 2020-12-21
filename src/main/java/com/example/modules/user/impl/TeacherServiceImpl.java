@@ -55,6 +55,11 @@ public class TeacherServiceImpl implements TeacherService {
         current = calendar.getTime();
         order.setReturnTime(current);
         orderRepository.save(order);
+        List<Order> othersOrders = orderRepository.findByDeviceAndOrderStatus(device, OrderStatus.ENQUEUE.getCode());
+        for (Order order1: othersOrders) {
+            order1.setOrderStatus(OrderStatus.FINISH_FAILED.getCode());
+            orderRepository.save(order1);
+        }
     }
 
     @Override
