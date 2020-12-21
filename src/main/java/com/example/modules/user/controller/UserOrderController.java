@@ -4,11 +4,9 @@ import com.example.common.response.RespBean;
 import com.example.modules.user.service.SearchOrderService;
 import com.example.modules.user.service.TeacherService;
 import com.example.modules.user.service.UserService;
+import com.example.modules.user.vo.ReportBrokenVO;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -79,9 +77,9 @@ public class UserOrderController {
         return RespBean.ok();
     }
 
-    @PutMapping("/api/me/device/{deviceId}/repair")
-    public RespBean repairDevice(@PathVariable Integer deviceId) {
-        teacherService.repairDevice(deviceId);
+    @PostMapping("/api/me/device/report/repair")
+    public RespBean repairDevice(@RequestBody ReportBrokenVO reportBrokenVO) {
+        teacherService.repairDevice(reportBrokenVO);
         return RespBean.ok();
     }
 

@@ -15,6 +15,7 @@ import com.example.entity.User;
 import com.example.modules.user.service.TeacherService;
 import com.example.modules.user.vo.DeviceOrderVO;
 import com.example.modules.device.vo.DeviceVO;
+import com.example.modules.user.vo.ReportBrokenVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,14 +58,17 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void repairDevice(Integer deviceId) {
+    public void repairDevice(ReportBrokenVO reportBrokenVO) {
         Broken broken = new Broken();
-        broken.setReason("设备损坏");
-        broken.setBrokenType(BrokenType.FixAble.getType());
+        broken.setReason(reportBrokenVO.getReason());
+        broken.setBrokenType(reportBrokenVO.getBrokenType());
         broken.setBrokeTime(new Date());
-        broken.setDevice(deviceCache.getDevice(deviceId));
+        broken.setDevice(deviceCache.getDevice(reportBrokenVO.getDeviceId()));
         brokenCache.put(broken);
-        orderRepository.deleteByDevice_DeviceId(deviceId);
+        orderRepository.deleteByDevice_DeviceId(reportBrokenVO.getDeviceId());
+        Device device = deviceCache.getDevice(reportBrokenVO.getDeviceId());
+        device.setDeviceStatus(DeviceStatus.BROKEN.getCode());
+        deviceCache.putDevice(device);
     }
 
 }
